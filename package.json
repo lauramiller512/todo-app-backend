@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/lauramiller512/todo-app-backend/issues"
   },
-  "homepage": "https://github.com/lauramiller512/todo-app-backend#readme"
+  "homepage": "https://github.com/lauramiller512/todo-app-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "serverless": "^1.62.0",
+    "serverless-http": "^2.3.1"
+  }
 }
