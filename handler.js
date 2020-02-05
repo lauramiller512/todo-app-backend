@@ -1,26 +1,18 @@
 'use strict';
-
 const serverless = require('serverless-http');
 const express = require('express');
 const app = express();
 
-app.get('/tasks', function (req, res) {
-  res.send('Hello World');
-})
+app.get('/tasks', function(req, res) {
+  res.json({
+    state: {
+      tasks: [
+        { id: uuidv4(), description: "Walk the dog", completed: false },
+        { id: uuidv4(), description: "Eat cheese", completed: false },
+        { id: uuidv4(), description: "Learn the kazoo", completed: false }
+      ],
+  }
+});
+});
 
 module.exports.tasks = serverless(app);
-
-// module.exports.tasks = async event => {
-//   return {
-//     statusCode: 200,
-//     body: JSON.stringify(
-//       {
-//         message: 'Your API works',
-//       },
-//       null,
-//       2
-//     ),
-//   };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
