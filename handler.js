@@ -7,9 +7,9 @@ app.get('/tasks', function(req, res) {
   res.json({
     state: {
       tasks: [
-        { id: uuidv4(), description: "Walk the dog", completed: false },
-        { id: uuidv4(), description: "Eat cheese", completed: false },
-        { id: uuidv4(), description: "Learn the kazoo", completed: false }
+        { id: 1, description: "Walk the dog", completed: false },
+        { id: 2, description: "Eat cheese", completed: false },
+        { id: 3, description: "Learn the kazoo", completed: false }
       ],
   }
 });
