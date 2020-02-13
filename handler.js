@@ -7,17 +7,17 @@ const uuidv4 = require('uuid/v4');
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host     : 'XXXXXXXXXX',
-  user     : 'XXXXXXXXXXX',
-  password : 'XXXXXXXXXXX',
-  database : 'XXXXXXXXXXX'
+  host     : 'tr-course-rds-instance.ckseo0dq8xc9.eu-west-2.rds.amazonaws.com',
+  user     : 'root',
+  password : 'Shhh',
+  database : 'tasks'
 });
 
 
 // Retrieving tasks
 app.get('/tasks', function (req, res) {
 
-  connection.query('SELECT * FROM `task` WHERE `userId` = "geoff"', function (error, results, fields) {
+  connection.query('SELECT * FROM `task` WHERE `userId` = 2', function (error, results, fields) {
     // error will be an Error if one occurred during the query
     if(error) {
       console.error("Your query had a problem with fetching tasks", error);
