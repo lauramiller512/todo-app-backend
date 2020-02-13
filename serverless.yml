@@ -12,4 +12,16 @@ functions:
       - http:
           path: tasks
           method: get
-          cors: true #cross origin resource sharing
+          cors: true
+      - http:
+          path: tasks/{taskId}
+          method: put
+          cors: true
+      - http:
+          path: tasks
+          method: post
+          cors: true
+      - http:
+          path: tasks/{taskId}
+          method: delete
+          cors: true
