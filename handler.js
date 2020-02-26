@@ -67,7 +67,7 @@ app.put("/tasks/:taskID", function(req, res) {
       // Return to client info about task that has been updated
       res.json({
         updatedTask: results,
-        message: "Your task was updated"
+        message: "Task completed!"
       });
     }
   })
