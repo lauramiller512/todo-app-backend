@@ -3,14 +3,15 @@
 const serverless = require('serverless-http');
 const express = require('express');
 const app = express();
+app.use(express.json());
 const uuidv4 = require('uuid/v4');
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host     : 'tr-course-rds-instance.ckseo0dq8xc9.eu-west-2.rds.amazonaws.com',
-  user     : 'root',
-  password : 'Shhh',
-  database : 'tasks'
+  host     : process.env.DB_HOST,
+  user     : process.env.DB_USER,
+  password : process.env.DB_PASSWORD,
+  database : process.env.DB_SCHEMA
 });
 
 
@@ -32,10 +33,28 @@ app.get('/tasks', function (req, res) {
 
 // Creating tasks
 app.post('/tasks', function (req, res) {
-  res.json({
-    message: 'Your POST works',
+
+// Accept information from the client
+  // about what task is being created
+  const taskToInsert = req.body;
+  taskToInsert.taskId = uuidv4();
+
+  // Take that information and pre-populate an SQL INSERT statement
+  // Execute the statement
+  connection.query('INSERT INTO `task` SET ?', taskToInsert, function (error, results, fields) {
+    if(error) {
+      console.error("Your query had a problem with insert a new task", error);
+      res.status(500).json({errorMessage: error});
+    }
+    else {
+      // Return to the client information about the task that has been created
+      res.json({
+        task: taskToInsert
+      });
+    }
   });
 });
+
 
 // Updating tasks
 app.put('/tasks/:taskId', function (req, res) {
@@ -46,6 +65,7 @@ app.put('/tasks/:taskId', function (req, res) {
 
 // Deleting tasks
 app.delete('/tasks/:taskId', function (req, res) {
+
   res.json({
     message: 'Your DELETE works',
   });
