@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `task` (
-  `taskId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `uuid` varchar(36) DEFAULT NULL,
   `taskDescription` varchar(200) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',

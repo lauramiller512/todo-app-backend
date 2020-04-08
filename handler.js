@@ -41,7 +41,7 @@ app.post('/tasks', function (req, res) {
 // Accept information from the client
   // about what task is being created
   const taskToInsert = req.body;
-  taskToInsert.uuid = uuidv4();
+  taskToInsert.id = uuidv4();
 
   // Take that information and pre-populate an SQL INSERT statement
   // Execute the statement
@@ -61,8 +61,8 @@ app.post('/tasks', function (req, res) {
 
 
 // Updating task to show it's been completed
-app.put("/tasks/:taskID", function(req, res) {
-  connection.query('UPDATE `task` SET `status` = ? WHERE `taskID` = ?', [req.body.status, req.params.taskID], function (error, results, fields) {
+app.put("/tasks/:id", function(req, res) {
+  connection.query('UPDATE `task` SET `status` = 1 WHERE `id` = ?', req.params.id, function (error, results, fields) {
     if(error) {
       console.error("Your query had a problem with updating the task", error);
       res.status(500).json({errorMessage: error});
@@ -78,11 +78,11 @@ app.put("/tasks/:taskID", function(req, res) {
 });
 
 // Deleting tasks
-app.delete('/tasks/:taskID', function (req, res) {
+app.delete('/tasks/:id', function (req, res) {
  // Pull the task being deleted
- const taskToDelete = req.params.taskID;
+ const taskToDelete = req.params.id;
 
- connection.query('DELETE FROM `task` WHERE `taskID` = ?', taskToDelete, function (error, results, fields) {
+ connection.query('DELETE FROM `task` WHERE `id` = ?', taskToDelete, function (error, results, fields) {
    if(error) {
      console.error("Your query had a problem with deleting the task", error);
      res.status(500).json({errorMessage: error});
