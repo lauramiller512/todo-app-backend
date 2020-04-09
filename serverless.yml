@@ -19,7 +19,7 @@ functions:
           method: get
           cors: true
       - http:
-          path: tasks/{id}
+          path: tasks/{taskId}
           method: put
           cors: true
       - http:
@@ -27,6 +27,6 @@ functions:
           method: post
           cors: true
       - http:
-          path: tasks/{id}
+          path: tasks/{taskId}
           method: delete
           cors: true
