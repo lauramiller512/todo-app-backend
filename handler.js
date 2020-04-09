@@ -61,7 +61,7 @@ app.post('/tasks', function (req, res) {
 
 // Updating task to show it's been completed
 app.put("/tasks/:taskId", function(req, res) {
-  connection.query('UPDATE `task` SET `status` = 1 WHERE `taskId` = ?', req.params.id, function (error, results, fields) {
+  connection.query('UPDATE `task` SET `status` = 1 WHERE `taskId` = ?', req.params.taskId, function (error, results, fields) {
     if(error) {
       console.error("Your query had a problem with updating the task", error);
       res.status(500).json({errorMessage: error});
@@ -76,7 +76,6 @@ app.put("/tasks/:taskId", function(req, res) {
   })
 });
 
-// Deleting tasks
 app.delete('/tasks/:taskId', function (req, res) {
  // Pull the task being deleted
  const taskToDelete = req.params.taskId;
