@@ -62,7 +62,7 @@ app.post('/tasks', function (req, res) {
 
 // Updating task to show it's been completed
 app.put("/tasks/:taskID", function(req, res) {
-  connection.query('UPDATE `task` SET `status` = ? WHERE `taskID` = ?', [req.body.status, req.params.taskID], function (error, results, fields) {
+  connection.query('UPDATE `task` SET `status` = 1 WHERE `taskID` = ?', [req.body.status, req.params.taskID], function (error, results, fields) {
     if(error) {
       console.error("Your query had a problem with updating the task", error);
       res.status(500).json({errorMessage: error});
