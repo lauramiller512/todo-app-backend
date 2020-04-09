@@ -22,7 +22,7 @@ const connection = mysql.createConnection({
 app.get('/tasks', function (req, res) {
 
   // Reconfigure DB so that taskID is void, uuid is the taskId, and make tasks default to user 1.
-  connection.query('SELECT * FROM `task` WHERE `userId` = 1', function (error, results, fields) {
+  connection.query('SELECT * FROM `task` WHERE `status` = 0', function (error, results, fields) {
     // error will be an Error if one occurred during the query
     if(error) {
       console.error("Your query had a problem with fetching tasks", error);
